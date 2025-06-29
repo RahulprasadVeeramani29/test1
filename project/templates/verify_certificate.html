@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Certificate - EduSite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="jumbotron text-center bg-info text-white">
+        <h1 class="display-4">Verify Your Certificate</h1>
+        <p class="lead">Enter your certificate code below to verify its authenticity.</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow">
+                    <h3 class="text-center mb-4">Certificate Verification</h3>
+                    <form method="post">
+                        <input type="text" name="code" class="form-control mb-3" placeholder="Certificate Code" required>
+                        <button type="submit" class="btn btn-info btn-block">Verify</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 EduSite. All rights reserved.</p>
+    </footer>
+</body>
+</html>

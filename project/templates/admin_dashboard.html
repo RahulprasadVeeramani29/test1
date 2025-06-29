@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa, #e0f7fa);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .btn-custom {
+            background: #007bff;
+            color: white;
+            transition: background 0.3s;
+        }
+        .btn-custom:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center animate__animated animate__fadeInDown">🎓 Admin Dashboard</h1>
+
+    <h2 class="mt-4">Add Workshop</h2>
+    <form action="/add_workshop" method="post" class="mb-5">
+        <input type="text" name="title" placeholder="Workshop Title" class="form-control mb-2" required>
+        <textarea name="description" placeholder="Description" class="form-control mb-2" required></textarea>
+        <input type="text" name="date" placeholder="Date" class="form-control mb-2" required>
+        <button type="submit" class="btn btn-success btn-custom">Add Workshop</button>
+    </form>
+
+    <h2>Students</h2>
+    <div class="row">
+        {% for student in students %}
+        <div class="col-md-4">
+            <div class="card p-3 animate__animated animate__fadeInUp">
+                <h5><strong>{{ student[1] }}</strong></h5>
+                <p>Email: {{ student[2] }}</p>
+                <p>Progress: {{ student[3] }}</p>
+                <p>Attendance: {{ student[4] }}</p>
+
+                <form action="/update_student/{{ student[0] }}" method="post">
+                    <input type="text" name="progress" placeholder="New progress" class="form-control mb-1" required>
+                    <input type="number" name="attendance" placeholder="New attendance" min="0" class="form-control mb-1" required>
+                    <button type="submit" class="btn btn-primary btn-custom mb-2">Update</button>
+                </form>
+
+                <a href="/generate_certificate/{{ student[0] }}" class="btn btn-success btn-custom">Generate Certificate</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mt-5">Workshops</h2>
+    <div class="row">
+        {% for workshop in workshops %}
+        <div class="col-md-4">
+            <div class="card p-3 animate__animated animate__fadeInUp">
+                <h5><strong>{{ workshop[1] }}</strong></h5>
+                <p>{{ workshop[2] }}</p>
+                <p>Date: {{ workshop[3] }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/logout" class="btn btn-danger btn-custom">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+body {
+  background: linear-gradient(135deg, #f8f9fa, #e0f7fa);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1, h2 {
+  margin-top: 20px;
+}
+.card {
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+form input, form button, form textarea {
+  margin: 10px 0;
+}
+.btn-custom {
+  background: #007bff;
+  color: white;
+  transition: background 0.3s;
+}
+.btn-custom:hover {
+  background: #0056b3;
+}
+.logo-img {
+  width: 120px;
+  animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+</style>
+
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+    <h1>👨‍🎓 Student Dashboard - {{ user }}</h1>
+    <a href="/logout">Logout</a>
+
+    <h2>Workshops</h2>
+    {% for workshop in workshops %}
+        <div class="card">
+            <strong>{{ workshop[1] }}</strong><br>
+            {{ workshop[2] }}<br>
+            📅 {{ workshop[3] }}
+        </div>
+    {% endfor %}
+</body>
+</html>
